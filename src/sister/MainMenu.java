@@ -221,6 +221,8 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void readNote() {}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beginQuiz;
