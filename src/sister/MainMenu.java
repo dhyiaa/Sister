@@ -5,6 +5,9 @@
  */
 package sister;
 
+import java.io.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author dhiaa
@@ -222,7 +225,50 @@ public class MainMenu extends javax.swing.JFrame {
         });
     }
     
-    public void readNote() {}
+    public ArrayList<Note> readNote() {
+
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\sister\\Notes.txt"))) {
+            
+            int counter = Integer.parseInt(br.readLine());
+            
+        }
+        
+        catch (IOException e) {
+        
+            System.out.println("Error: " + e.toString());
+        
+        }
+        
+        return null;
+    
+    }
+    
+    //public Note generateNote() {}
+    
+    public ArrayList<Question> readQuestions() {
+    
+        try {
+        
+            FileReader fr = new FileReader("src\\sister\\Questions.txt");
+            BufferedReader br = new BufferedReader(fr);
+            
+            
+            
+            br.close();
+        
+        }
+        
+        catch (IOException e) {
+        
+            System.out.println("Error: " + e.toString());
+        
+        }
+        
+        return null;
+    
+    }
+    
+    //public Question generateQuestion() {}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beginQuiz;
