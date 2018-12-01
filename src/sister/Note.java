@@ -22,6 +22,18 @@ public class Note {
     public String getTitle() {
         return title;
     }
+    
+    public void setValue(String value) {
+    
+        this.value = value;
+    
+    }
+    
+    public void setTitle(String title) {
+    
+        this.title = title;
+    
+    }
 
     @Override
     public int hashCode() {
