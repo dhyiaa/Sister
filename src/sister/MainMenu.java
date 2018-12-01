@@ -229,33 +229,24 @@ public class MainMenu extends javax.swing.JFrame {
 
         try (BufferedReader br = new BufferedReader(new FileReader("src\\sister\\Notes.txt"))) {
             
+            ArrayList<Note> notes = new ArrayList<>();
+            
+            String value;
+            String title;
             int counter = Integer.parseInt(br.readLine());
             
-        }
-        
-        catch (IOException e) {
-        
-            System.out.println("Error: " + e.toString());
-        
-        }
-        
-        return null;
-    
-    }
-    
-    //public Note generateNote() {}
-    
-    public ArrayList<Question> readQuestions() {
-    
-        try {
-        
-            FileReader fr = new FileReader("src\\sister\\Questions.txt");
-            BufferedReader br = new BufferedReader(fr);
+            for (int i = 0; i < counter; i++) {
             
+                title = br.readLine();
+                value = br.readLine();
+                notes.add(new Note(value, title));
             
+            }
             
             br.close();
-        
+            
+            return notes;
+            
         }
         
         catch (IOException e) {
@@ -267,8 +258,47 @@ public class MainMenu extends javax.swing.JFrame {
         return null;
     
     }
+
+    public ArrayList<Question> readQuestions() {
     
-    //public Question generateQuestion() {}
+        try (BufferedReader br = new BufferedReader(new FileReader("src\\sister\\Questions.txt"))) {
+            
+            ArrayList<Question> questions = new ArrayList<>();
+            
+            String[] selections = new String[4];
+            
+            int counter = Integer.parseInt(br.readLine());
+            int correctSelection;
+            
+            for (int i = 0; i < counter; i++) {
+                
+                for (int j = 0; j < 4; j++) {
+                
+                    selections[j] = br.readLine();
+                
+                }
+
+                correctSelection = Integer.parseInt(br.readLine());
+                
+                questions.add(new Question(selections, correctSelection));
+            
+            }
+            
+            br.close();
+            
+            return questions;
+            
+        }
+        
+        catch (IOException e) {
+        
+            System.out.println("Error: " + e.toString());
+        
+        }
+        
+        return null;
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton beginQuiz;
@@ -284,4 +314,5 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JList<String> topicList;
     private javax.swing.JLabel topicTitle;
     // End of variables declaration//GEN-END:variables
+
 }
