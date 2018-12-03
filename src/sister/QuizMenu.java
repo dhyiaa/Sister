@@ -61,7 +61,33 @@ public class QuizMenu extends javax.swing.JFrame {
     
     public void setContent(Question q){
         questionContent.setText(q.getContent());
-        
+        selectionA.setText(q.getSelections()[0]);
+        selectionB.setText(q.getSelections()[1]);
+        selectionC.setText(q.getSelections()[2]);
+        selectionD.setText(q.getSelections()[3]);
+        if(q.getSelections().length>4){
+            selectionE.setVisible(true);
+            selectionE.setText(q.getSelections()[4]);
+        }
+        else{
+            selectionE.setVisible(false);
+        }
+        int s=q.getCurrentSelection();
+        if(s==0){
+            selectionA.setSelected(true);
+        }
+        else if(s==1){
+            selectionB.setSelected(true);
+        }
+        else if(s==2){
+            selectionC.setSelected(true);
+        }
+        else if(s==3){
+            selectionD.setSelected(true);
+        }
+        else if(s==4){
+            selectionE.setSelected(true);
+        }
     }
 
     /**

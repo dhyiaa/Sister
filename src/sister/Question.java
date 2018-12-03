@@ -24,6 +24,7 @@ public class Question {
         this.content = content;
         this.selections = selections;
         this.correctSelection = correctSelection;
+        currentSelection=-1;
     }
 
     public String getContent() {
