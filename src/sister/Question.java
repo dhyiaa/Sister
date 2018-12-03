@@ -1,5 +1,6 @@
 package sister;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  *
@@ -7,21 +8,33 @@ import java.util.Arrays;
  */
 public class Question {
 
+    private String content ;
     private String[] selections;
     private int currentSelection;
     private int correctSelection;
 
-    public Question(String[] selections, int currentSelection, int correctSelection) {
+    public Question(String content, String[] selections, int currentSelection, int correctSelection) {
+        this.content = content;
         this.selections = selections;
         this.currentSelection = currentSelection;
         this.correctSelection = correctSelection;
     }
-    
-    public Question(String[] selections, int correctSelection) {
+
+    public Question(String content, String[] selections, int correctSelection) {
+        this.content = content;
         this.selections = selections;
-        this.currentSelection = 0;
         this.correctSelection = correctSelection;
     }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+ 
     
     public boolean isCorrect(){
         return this.currentSelection == this.correctSelection;
@@ -52,8 +65,10 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" + "selections=" + selections + ", currentSelection=" + currentSelection + ", correctSelection=" + correctSelection + '}';
+        return "Question{" + "content=" + content + ", selections=" + selections + ", currentSelection=" + currentSelection + ", correctSelection=" + correctSelection + '}';
     }
+
+    
 
     @Override
     public int hashCode() {
@@ -82,11 +97,16 @@ public class Question {
         if (this.correctSelection != other.correctSelection) {
             return false;
         }
+        if (!Objects.equals(this.content, other.content)) {
+            return false;
+        }
         if (!Arrays.deepEquals(this.selections, other.selections)) {
             return false;
         }
         return true;
     }
+
+
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
