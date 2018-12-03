@@ -7,18 +7,41 @@ package sister;
 
 import java.io.*;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
  * @author dhiaa
  */
 public class MainMenu extends javax.swing.JFrame {
-
+    public QuizMenu newQuiz;
+    public ArrayList<String> topicName=new ArrayList();
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
+        
         initComponents();
+        topicName.add("Item 1");
+        topicName.add("Item 2");
+        topicName.add("Item 3");
+        topicName.add("Item 4");
+        topicName.add("Item 5");
+        
+        topicList.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                    topicSelected();
+                }
+        });
+        DefaultListModel model=new DefaultListModel();
+        for(int i=0;i<topicName.size();i++){
+            
+                model.addElement(topicName.get(i));
+            
+        }
+        topicList.setModel(model);
     }
 
     /**
@@ -185,6 +208,11 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void topicSelected(){
+        topicList.getSelectedValue();
+        noteContent.setText(topicList.getSelectedIndex()+"");
+    }
+    
     private void topicListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topicListMouseClicked
         // TODO add your handling code here:
         
