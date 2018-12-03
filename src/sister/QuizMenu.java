@@ -17,11 +17,16 @@ public class QuizMenu extends javax.swing.JFrame {
     private MainMenu newMainMenu;
     private ArrayList<Question> questionData;
     private int currentIndex=0;
+    private int total;
     /**
      * Creates new form QuizMenu
      */
     public QuizMenu() {
         initComponents();
+        setContent(questionData.get(currentIndex));
+        total=questionData.size();
+        totalQuestion.setText(total+1+"");
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -53,6 +58,10 @@ public class QuizMenu extends javax.swing.JFrame {
     public void storeMainMenu(MainMenu menu){
         this.newMainMenu=menu;
     }
+    
+    public void setContent(Question q){
+        //questionContent.setText(questionData.get(currentIndex).);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +75,7 @@ public class QuizMenu extends javax.swing.JFrame {
         selections = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        questionContent = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         selectionA = new javax.swing.JRadioButton();
         selectionB = new javax.swing.JRadioButton();
@@ -77,21 +86,21 @@ public class QuizMenu extends javax.swing.JFrame {
         nextQuestion = new javax.swing.JButton();
         lastQuestion = new javax.swing.JButton();
         questionIndexInput = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        totalQuestion = new javax.swing.JLabel();
         submitAnswer = new javax.swing.JButton();
         saveAnswer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 400));
 
-        jTextArea1.setBackground(new java.awt.Color(238, 238, 238));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("1.");
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jTextArea1.setEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        questionContent.setBackground(new java.awt.Color(238, 238, 238));
+        questionContent.setColumns(20);
+        questionContent.setRows(5);
+        questionContent.setText("1.");
+        questionContent.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        questionContent.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        questionContent.setEnabled(false);
+        jScrollPane1.setViewportView(questionContent);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,12 +170,17 @@ public class QuizMenu extends javax.swing.JFrame {
         });
 
         lastQuestion.setText("<");
+        lastQuestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastQuestionActionPerformed(evt);
+            }
+        });
 
         questionIndexInput.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         questionIndexInput.setText("1");
         questionIndexInput.setPreferredSize(new java.awt.Dimension(18, 28));
 
-        jLabel1.setText("/10");
+        totalQuestion.setText("/10");
 
         submitAnswer.setText("submit");
 
@@ -182,7 +196,7 @@ public class QuizMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(questionIndexInput, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(totalQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
@@ -196,7 +210,7 @@ public class QuizMenu extends javax.swing.JFrame {
                 .addComponent(lastQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(questionIndexInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(nextQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(totalQuestion)
                 .addComponent(submitAnswer)
                 .addComponent(saveAnswer))
         );
@@ -229,19 +243,36 @@ public class QuizMenu extends javax.swing.JFrame {
 
     private void nextQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQuestionActionPerformed
         // TODO add your handling code here:
+        if(currentIndex==total-1){
+            
+        }
+        else{
+            currentIndex++;
+            setContent(questionData.get(currentIndex));
+        }
     }//GEN-LAST:event_nextQuestionActionPerformed
+
+    private void lastQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastQuestionActionPerformed
+        // TODO add your handling code here:
+        if(currentIndex==0){
+            
+        }
+        else{
+            currentIndex--;
+            setContent(questionData.get(currentIndex));
+        }
+    }//GEN-LAST:event_lastQuestionActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton lastQuestion;
     private javax.swing.JButton nextQuestion;
+    private javax.swing.JTextArea questionContent;
     private javax.swing.JTextField questionIndexInput;
     private javax.swing.JButton saveAnswer;
     private javax.swing.JRadioButton selectionA;
@@ -251,5 +282,6 @@ public class QuizMenu extends javax.swing.JFrame {
     private javax.swing.JRadioButton selectionE;
     private javax.swing.ButtonGroup selections;
     private javax.swing.JButton submitAnswer;
+    private javax.swing.JLabel totalQuestion;
     // End of variables declaration//GEN-END:variables
 }
