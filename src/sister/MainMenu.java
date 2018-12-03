@@ -75,9 +75,9 @@ public class MainMenu extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        topicList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                topicListMouseClicked(evt);
+        topicList.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                topicListMouseMoved(evt);
             }
         });
         jScrollPane4.setViewportView(topicList);
@@ -159,6 +159,11 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         beginQuiz.setText("Start a Quiz!");
+        beginQuiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beginQuizActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -213,10 +218,27 @@ public class MainMenu extends javax.swing.JFrame {
         noteContent.setText(topicList.getSelectedIndex()+"");
     }
     
-    private void topicListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topicListMouseClicked
+    private void beginQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginQuizActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_topicListMouseClicked
+        newQuiz=new QuizMenu();
+        newQuiz.storeMainMenu(this);
+        newQuiz.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_beginQuizActionPerformed
+
+    private void topicListMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topicListMouseMoved
+        // TODO add your handling code here:
+        int index = topicList.locationToIndex(evt.getPoint());
+        DefaultListModel model=new DefaultListModel();
+        for(int i=0;i<topicName.size();i++){
+            if(i==index){
+                ((DefaultListModel)topicList.getModel()).set(i, "<html><u>"+topicName.get(i)+"</u></html>");
+            }
+            else{
+                ((DefaultListModel)topicList.getModel()).set(i, topicName.get(i));
+            }
+        }
+    }//GEN-LAST:event_topicListMouseMoved
 
     /**
      * @param args the command line arguments
