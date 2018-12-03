@@ -16,6 +16,13 @@ public class Question {
         this.currentSelection = currentSelection;
         this.correctSelection = correctSelection;
     }
+    
+    public Question(String[] selections, int correctSelection) {
+        this.selections = selections;
+        this.currentSelection = 0;
+        this.correctSelection = correctSelection;
+    }
+    
     public boolean isCorrect(){
         return this.currentSelection == this.correctSelection;
     }
