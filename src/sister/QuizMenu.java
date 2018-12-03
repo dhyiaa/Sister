@@ -5,6 +5,7 @@
  */
 package sister;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
@@ -13,7 +14,9 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
  * @author zhuxiaoyu
  */
 public class QuizMenu extends javax.swing.JFrame {
-    MainMenu newMainMenu;
+    private MainMenu newMainMenu;
+    private ArrayList<Question> questionData;
+    private int currentIndex=0;
     /**
      * Creates new form QuizMenu
      */
@@ -28,6 +31,11 @@ public class QuizMenu extends javax.swing.JFrame {
             
         });
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }
+    
+    public QuizMenu(MainMenu mainmenu,ArrayList<Question> questionData){
+        this.newMainMenu=mainmenu;
+        this.questionData=questionData;
     }
     
     public void exitOption(java.awt.event.WindowEvent windowEvent){
@@ -55,6 +63,7 @@ public class QuizMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        selections = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -100,15 +109,20 @@ public class QuizMenu extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        selections.add(selectionA);
         selectionA.setText("jRadioButton1");
         selectionA.setActionCommand("jRadioBu \ntton1");
 
+        selections.add(selectionB);
         selectionB.setText("jRadioButton2");
 
+        selections.add(selectionC);
         selectionC.setText("jRadioButton3");
 
+        selections.add(selectionD);
         selectionD.setText("jRadioButton4");
 
+        selections.add(selectionE);
         selectionE.setText("jRadioButton5");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -235,6 +249,7 @@ public class QuizMenu extends javax.swing.JFrame {
     private javax.swing.JRadioButton selectionC;
     private javax.swing.JRadioButton selectionD;
     private javax.swing.JRadioButton selectionE;
+    private javax.swing.ButtonGroup selections;
     private javax.swing.JButton submitAnswer;
     // End of variables declaration//GEN-END:variables
 }

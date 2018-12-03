@@ -18,12 +18,18 @@ import javax.swing.event.ListSelectionListener;
 public class MainMenu extends javax.swing.JFrame {
     public QuizMenu newQuiz;
     public ArrayList<String> topicName=new ArrayList();
+    public ArrayList<Note> notes;
+    public ArrayList<Question> questions;
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         
         initComponents();
+        
+        questions=readQuestions();
+        notes=readNote();
+        
         topicName.add("Item 1");
         topicName.add("Item 2");
         topicName.add("Item 3");
@@ -220,8 +226,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     private void beginQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginQuizActionPerformed
         // TODO add your handling code here:
-        newQuiz=new QuizMenu();
-        newQuiz.storeMainMenu(this);
+        newQuiz=new QuizMenu(this,questions);
         newQuiz.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_beginQuizActionPerformed
