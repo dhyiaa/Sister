@@ -326,7 +326,7 @@ public class MainMenu extends javax.swing.JFrame {
             int correctSelection;
             
             for (int i = 0; i < counter; i++) {
-                
+                String content=br.readLine();
                 for (int j = 0; j < 4; j++) {
                 
                     selections[j] = br.readLine();
@@ -335,7 +335,7 @@ public class MainMenu extends javax.swing.JFrame {
 
                 correctSelection = Integer.parseInt(br.readLine());
                 
-                questions.add(new Question(selections, correctSelection));
+                questions.add(new Question(content,selections, correctSelection));
             
             }
             

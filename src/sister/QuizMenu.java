@@ -60,7 +60,8 @@ public class QuizMenu extends javax.swing.JFrame {
     }
     
     public void setContent(Question q){
-        //questionContent.setText(questionData.get(currentIndex).);
+        questionContent.setText(q.getContent());
+        
     }
 
     /**
