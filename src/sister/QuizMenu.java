@@ -80,7 +80,7 @@ public class QuizMenu extends javax.swing.JFrame {
         return change;
     }
     
-    public void exitOption(java.awt.event.WindowEvent windowEvent){
+    private void exitOption(java.awt.event.WindowEvent windowEvent){
         storeAnswer(questionData.get(currentIndex));
         if(checkAnyChange()){
             if(checkChanges()){
@@ -155,6 +155,12 @@ public class QuizMenu extends javax.swing.JFrame {
         selectionC.setText(q.getSelections()[2]);
         selectionD.setText(q.getSelections()[3]);
         
+        countA=false;
+        countB=false;
+        countC=false;
+        countD=false;
+        countE=false;
+        
         if(q.getSelections().length>4){
             selectionE.setVisible(true);
             selectionE.setText(q.getSelections()[4]);
@@ -163,20 +169,26 @@ public class QuizMenu extends javax.swing.JFrame {
             selectionE.setVisible(false);
         }
         int s=q.getCurrentSelection();
+        
         if(s==0){
             selectionA.setSelected(true);
+            countA=true;
         }
         else if(s==1){
             selectionB.setSelected(true);
+             countB=true;
         }
         else if(s==2){
             selectionC.setSelected(true);
+             countC=true;
         }
         else if(s==3){
             selectionD.setSelected(true);
+             countD=true;
         }
         else if(s==4){
             selectionE.setSelected(true);
+             countE=true;
         }
         else{
             selections.clearSelection();
@@ -342,6 +354,11 @@ public class QuizMenu extends javax.swing.JFrame {
         totalQuestion.setText("/10");
 
         submitAnswer.setText("submit");
+        submitAnswer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitAnswerActionPerformed(evt);
+            }
+        });
 
         saveAnswer.setText("save");
         saveAnswer.addActionListener(new java.awt.event.ActionListener() {
@@ -538,6 +555,37 @@ public class QuizMenu extends javax.swing.JFrame {
         storeBegnningSelections();
     
     }//GEN-LAST:event_saveAnswerActionPerformed
+
+    private void submitAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAnswerActionPerformed
+        // TODO add your handling code here:
+        String unfinishedQuestion="";
+        boolean submit=true;
+        
+        storeAnswer(questionData.get(currentIndex));
+        for(int i=0;i<questionData.size();i++){
+            if(questionData.get(i).getCurrentSelection()<0){
+                unfinishedQuestion+=(i+1)+", ";
+            }
+        }
+        if(unfinishedQuestion.length()>0){
+            Object[] options = {"Submit",
+                    "Cancel"};
+            int comfirm=JOptionPane.showOptionDialog(null, 
+                    "Question "+unfinishedQuestion.substring(0, unfinishedQuestion.length()-2)
+                            +" is left blank, do you still want to submit?", 
+                    "Blank questions", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+            if(comfirm==JOptionPane.NO_OPTION){
+                submit=false;
+            }
+        }
+        if(submit){
+            QuizSummarize summarize=new QuizSummarize(newMainMenu,questionData);
+            setVisible(false);
+            summarize.setVisible(true);
+        }
+    }//GEN-LAST:event_submitAnswerActionPerformed
     
     
 
