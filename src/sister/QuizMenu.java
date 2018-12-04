@@ -145,8 +145,11 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
      */
     private void exitOption(java.awt.event.WindowEvent windowEvent){
         storeAnswer(questionData.get(currentIndex));
+        //call the storeAnswer(Question q) metod to store the user selection of the current question
         if(checkAnyChange()){
+            //check if the quiz is blank
             if(checkChanges()){
+                //check if the quiz
                 Object[] options = {"Yes","No","Cancel"};
                 int exitComfirm=JOptionPane.showOptionDialog(null, 
                         "Do you want to save this quiz before exiting?", "Save Quiz?", 
