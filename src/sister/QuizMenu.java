@@ -288,6 +288,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         saveAnswerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         questionContentTextArea.setEditable(false);
         questionContentTextArea.setColumns(20);
