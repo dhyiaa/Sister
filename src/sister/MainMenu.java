@@ -317,7 +317,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     public ArrayList<Note> readNote() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/sister/Notes.txt"))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(MainMenu.class.getResourceAsStream("Notes.txt")))) {
             
             ArrayList<Note> notes = new ArrayList<>();
             
@@ -351,7 +351,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     public ArrayList<Question> readQuestions() {
     
-        try (BufferedReader br = new BufferedReader(new FileReader("src/sister/Questions.txt"))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(MainMenu.class.getResourceAsStream("Questions.txt")))) {
             
             ArrayList<Question> questions = new ArrayList<>();
             
