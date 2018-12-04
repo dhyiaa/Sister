@@ -6,7 +6,14 @@
 package sister;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.KeyStroke;
+import javax.swing.text.Element;
+import javax.swing.text.*;
 
 /**
  *
@@ -15,6 +22,7 @@ import java.util.ArrayList;
 public class QuizSummarize extends javax.swing.JFrame {
     private MainMenu mainMenu;
     private ArrayList<Question> questionData=new ArrayList();
+    private static String summarize="";
     /**
      * Creates new form QuizSummarize
      */
@@ -40,8 +48,7 @@ public class QuizSummarize extends javax.swing.JFrame {
     }
     
     private void giveSummarize(){
-        String summarize="";
-        int score=3;
+        int score=questionData.size();
         for(int i=0;i<questionData.size();i++){
             if(questionData.get(i).getCurrentSelection()!=questionData.get(i).getCorrectSelection()){
                 summarize+="<pre><b>WRONG: </b>";
@@ -115,14 +122,14 @@ public class QuizSummarize extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(252, 252, 252)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(scoreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -139,7 +146,7 @@ public class QuizSummarize extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane2;

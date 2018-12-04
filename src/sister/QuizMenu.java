@@ -7,6 +7,7 @@ package sister;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
@@ -15,18 +16,30 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
  *
  * @author zhuxiaoyu
  */
-public class QuizMenu extends javax.swing.JFrame {
+public class QuizMenu extends javax.swing.JFrame implements KeyListener{
     private MainMenu newMainMenu;
     private ArrayList<Question> questionData=new ArrayList();
     private int[] beginningSelection;
     private int currentIndex=0;
     private int total;
     private boolean countA=false,countB=false,countC=false,countD=false,countE=false;
+    private boolean indexInput=false;
     /**
      * Creates new form QuizMenu
      */
     public QuizMenu() {
         initComponents();
+        
+        setFocusable(true);
+        addKeyListener(this);
+        selectionA.addKeyListener(this);
+        selectionB.addKeyListener(this);
+        selectionC.addKeyListener(this);
+        selectionD.addKeyListener(this);
+        selectionE.addKeyListener(this);
+        questionContent.addKeyListener(this);
+        saveAnswer.addKeyListener(this);
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -470,7 +483,7 @@ public class QuizMenu extends javax.swing.JFrame {
 
     private void questionIndexInputMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_questionIndexInputMousePressed
         // TODO add your handling code here:
-        questionIndexInput.selectAll();
+            questionIndexInput.selectAll();
     }//GEN-LAST:event_questionIndexInputMousePressed
 
     private void selectionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionAActionPerformed
@@ -598,22 +611,47 @@ public class QuizMenu extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton lastQuestion;
-    private javax.swing.JButton nextQuestion;
-    private javax.swing.JTextArea questionContent;
-    private javax.swing.JTextField questionIndexInput;
-    private javax.swing.JButton saveAnswer;
-    private javax.swing.JRadioButton selectionA;
-    private javax.swing.JRadioButton selectionB;
-    private javax.swing.JRadioButton selectionC;
-    private javax.swing.JRadioButton selectionD;
-    private javax.swing.JRadioButton selectionE;
-    private javax.swing.ButtonGroup selections;
-    private javax.swing.JButton submitAnswer;
-    private javax.swing.JLabel totalQuestion;
+    javax.swing.JPanel jPanel1;
+    javax.swing.JPanel jPanel2;
+    javax.swing.JPanel jPanel3;
+    javax.swing.JScrollPane jScrollPane1;
+    javax.swing.JButton lastQuestion;
+    javax.swing.JButton nextQuestion;
+    javax.swing.JTextArea questionContent;
+    javax.swing.JTextField questionIndexInput;
+    javax.swing.JButton saveAnswer;
+    javax.swing.JRadioButton selectionA;
+    javax.swing.JRadioButton selectionB;
+    javax.swing.JRadioButton selectionC;
+    javax.swing.JRadioButton selectionD;
+    javax.swing.JRadioButton selectionE;
+    javax.swing.ButtonGroup selections;
+    javax.swing.JButton submitAnswer;
+    javax.swing.JLabel totalQuestion;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            nextQuestion.doClick();
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            lastQuestion.doClick();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
+    }
+    
+    @Override
+    public void setFocusable(boolean b) {
+        super.setFocusable(b);
+    }
 }
