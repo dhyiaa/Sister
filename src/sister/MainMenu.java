@@ -341,7 +341,7 @@ public class MainMenu extends javax.swing.JFrame {
         
         catch (IOException e) {
         
-            System.out.println("Error: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         
         }
         
@@ -384,7 +384,7 @@ public class MainMenu extends javax.swing.JFrame {
         
         catch (IOException e) {
         
-            System.out.println("Error: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         
         }
         
