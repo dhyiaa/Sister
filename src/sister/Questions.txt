@@ -1,13 +1,61 @@
-2
-asd
-A
-B
-C
-D
+10
+What does a system contain?
+A client
+A user
+A developer
+All of the above
+3
+Which is the correct way to measure success in a project?
+The project solves what it was meant to solve.
+The project makes a lot of money.
+The project confuses the users.
+The project is not working well.
 0
-asds
-C
-D
-E
-F
+What is SDLC?
+Software Development Life Cycle
+System Development Life Cycle
+A process for planning, creating, testing, and deploying an information system.
+All of the above
+3
+Who developed Waterfall Model?
+Malcolm Wang
+Winston Royce
+Peter Zhu
+Dheyaa AlNajafi
+1
+Which is NOT a phase of Waterfall Model?
+Maintenance
+Sleep
+Implementation
+Design
+1
+Where does the mistake cost the most?
+Implementation
+Design
+Test
+Maintenance
+3
+Which of the following is an example of Project Management Tools?
+UML
+Gantt Chart
+Weekly Reports
+All of the above
+3
+Who invented Gantt Chart?
+Winston Royce
+Elon Musk
+Henry Gantt
+All of the above
+2
+When was Waterfall Model invented?
+1910
+2018
+1970
+1900
+2
+When was Gantt Chart invented?
+2000's
+1970's
+1910's
+1980's
 2
