@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.Element;
 import javax.swing.text.*;
@@ -63,14 +64,14 @@ public class QuizSummarize extends javax.swing.JFrame {
                 //summarize+="<li>";
                 summarize+="<pre>   ";
                 if(j==questionData.get(i).getCurrentSelection()&&j==questionData.get(i).getCorrectSelection()){
-                    summarize+="<b><font size=+0.5><u>"+questionData.get(i).getSelections()[j]+"(Answer)</u></font></b>";
+                    summarize+="<b><font size=+0.5><u>"+questionData.get(i).getSelections()[j]+"(Correct Answer)</u></font></b>";
                 }
                 else if(j==questionData.get(i).getCurrentSelection()){
                     summarize+="<b>"+questionData.get(i).getSelections()[j]+"</b>";
                 }
                 
                 else if(j==questionData.get(i).getCorrectSelection()){
-                    summarize+="<u>"+questionData.get(i).getSelections()[j]+"(Answer)</u>";
+                    summarize+="<u>"+questionData.get(i).getSelections()[j]+"(Correct Answer)</u>";
                 }
                 else{
                     summarize+=questionData.get(i).getSelections()[j];
@@ -85,8 +86,17 @@ public class QuizSummarize extends javax.swing.JFrame {
     }
     
     private void exitOption(java.awt.event.WindowEvent windowEvent){
-        this.dispose();
-        mainMenu.setVisible(true);
+        Object[] options = {"Yes",
+                "Cancel"};
+        int comfirm=JOptionPane.showOptionDialog(null, 
+                "Do you want to return to the main menu?", 
+                "Do you want to submit?", 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+        if(comfirm==JOptionPane.YES_OPTION){
+            dispose();
+            mainMenu.setVisible(true);
+        }
     }
 
     /**

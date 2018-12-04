@@ -39,6 +39,9 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         selectionE.addKeyListener(this);
         questionContent.addKeyListener(this);
         saveAnswer.addKeyListener(this);
+        submitAnswer.addKeyListener(this);
+        nextQuestion.addKeyListener(this);
+        lastQuestion.addKeyListener(this);
         
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -207,6 +210,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
             selections.clearSelection();
         }
         questionIndexInput.setText(currentIndex+1+"");
+        pack();
     }
 
     /**
@@ -240,8 +244,11 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
 
         questionContent.setEditable(false);
         questionContent.setColumns(20);
+        questionContent.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        questionContent.setLineWrap(true);
         questionContent.setRows(5);
         questionContent.setText("1.");
+        questionContent.setWrapStyleWord(true);
         questionContent.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         questionContent.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(questionContent);
@@ -427,7 +434,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -601,9 +608,10 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
                 "Do you want to submit?", 
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+        
         if(comfirm==JOptionPane.YES_OPTION){
             QuizSummarize summarize=new QuizSummarize(newMainMenu,questionData);
-            setVisible(false);
+            dispose();
             summarize.setVisible(true);
         }
     }//GEN-LAST:event_submitAnswerActionPerformed
@@ -642,6 +650,26 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         }
         else if(e.getKeyCode() == KeyEvent.VK_LEFT){
             lastQuestion.doClick();
+        }
+        else if(e.getKeyChar()=='1'||e.getKeyChar()=='a'||e.getKeyChar()=='A'){
+            selectionA.doClick();
+        }
+        else if(e.getKeyChar()=='2'||e.getKeyChar()=='b'||e.getKeyChar()=='B'){
+            selectionB.doClick();
+        }
+        else if(e.getKeyChar()=='3'||e.getKeyChar()=='c'||e.getKeyChar()=='C'){
+            selectionC.doClick();
+        }
+        else if(e.getKeyChar()=='4'||e.getKeyChar()=='d'||e.getKeyChar()=='D'){
+            selectionD.doClick();
+        }
+        else if(e.getKeyChar()=='5'||e.getKeyChar()=='e'||e.getKeyChar()=='E'){
+            if(questionData.get(currentIndex).getSelections().length>4){
+                selectionE.doClick();
+            }
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            submitAnswer.doClick();
         }
     }
 
