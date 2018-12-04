@@ -107,7 +107,10 @@ public class Question {
         return true;
     }
 
-
+    public Question cloneQuestion(){
+        int current=currentSelection;
+        return new Question(content, selections, current, correctSelection);
+    }
 
     @Override
     protected Object clone() throws CloneNotSupportedException {

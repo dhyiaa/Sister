@@ -8,6 +8,7 @@ package sister;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -17,9 +18,11 @@ import javax.swing.event.ListSelectionListener;
  */
 public class MainMenu extends javax.swing.JFrame {
     public QuizMenu newQuiz;
+    public QuizMenu unfinishQuiz;
     public ArrayList<String> topicName=new ArrayList();
     public ArrayList<Note> notes;
     public ArrayList<Question> questions;
+    
     /**
      * Creates new form MainMenu
      */
@@ -48,6 +51,10 @@ public class MainMenu extends javax.swing.JFrame {
             
         }
         topicList.setModel(model);
+    }
+    
+    public void storeUnfinishQuiz(QuizMenu quiz){
+        unfinishQuiz=quiz;
     }
 
     /**
@@ -81,6 +88,7 @@ public class MainMenu extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        topicList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         topicList.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 topicListMouseMoved(evt);
@@ -143,8 +151,10 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        noteContent.setEditable(false);
         noteContent.setColumns(20);
         noteContent.setRows(5);
+        noteContent.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(noteContent);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -226,9 +236,38 @@ public class MainMenu extends javax.swing.JFrame {
     
     private void beginQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginQuizActionPerformed
         // TODO add your handling code here:
-        newQuiz=new QuizMenu(this,questions);
-        newQuiz.setVisible(true);
-        setVisible(false);
+        
+        if(unfinishQuiz!=null){
+            System.out.println("!!!");
+            Object[] options = {"Continue the unfinished quiz",
+                    "Start a new quiz"};
+            int comfirm=JOptionPane.showOptionDialog(null, 
+                    "You have an unfinished quiz, do you what to continue?", "Save Test?", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+            if(comfirm==JOptionPane.YES_OPTION){
+                unfinishQuiz.setVisible(true);
+                setVisible(false);
+            }
+            else{
+                System.out.println("!!");
+                for(int i=0;i<questions.size();i++){
+                    System.out.println(questions.get(i).getCurrentSelection());
+                }
+                unfinishQuiz.dispose();
+                newQuiz=new QuizMenu(this,questions);
+                newQuiz.setVisible(true);
+                setVisible(false);
+            }
+        }else{
+            System.out.println("!");
+            for(int i=0;i<questions.size();i++){
+                System.out.println(questions.get(i).getCurrentSelection());
+            }
+            newQuiz=new QuizMenu(this,questions);
+            newQuiz.setVisible(true);
+            setVisible(false);
+        }
     }//GEN-LAST:event_beginQuizActionPerformed
 
     private void topicListMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topicListMouseMoved
@@ -282,7 +321,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     public ArrayList<Note> readNote() {
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\sister\\Notes.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/sister/Notes.txt"))) {
             
             ArrayList<Note> notes = new ArrayList<>();
             
@@ -316,31 +355,31 @@ public class MainMenu extends javax.swing.JFrame {
 
     public ArrayList<Question> readQuestions() {
     
-        try (BufferedReader br = new BufferedReader(new FileReader("src\\sister\\Questions.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/sister/Questions.txt"))) {
             
             ArrayList<Question> questions = new ArrayList<>();
             
-            String[] selections = new String[4];
+            
             
             int counter = Integer.parseInt(br.readLine());
             int correctSelection;
             
             for (int i = 0; i < counter; i++) {
+                String[] selections = new String[4];
                 String content=br.readLine();
+                
                 for (int j = 0; j < 4; j++) {
                 
                     selections[j] = br.readLine();
-                
+                    
                 }
 
                 correctSelection = Integer.parseInt(br.readLine());
                 
-                questions.add(new Question(content,selections, correctSelection));
-            
+                questions.add(new Question(content,selections,correctSelection));
             }
             
             br.close();
-            
             return questions;
             
         }
