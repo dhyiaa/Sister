@@ -147,22 +147,30 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         storeAnswer(questionData.get(currentIndex));
         //call the storeAnswer(Question q) metod to store the user selection of the current question
         if(checkAnyChange()){
-            //check if the quiz is blank
+            //call the checkAnyChange() method to check if the quiz is blank
             if(checkChanges()){
-                //check if the quiz
+                //call the checkChanges() method to check if the quiz is changed comparing to the stored user selections
                 Object[] options = {"Yes","No","Cancel"};
+                //the option buttons for the confirm message will be "Yes", "No", and "Cancel"
                 int exitComfirm=JOptionPane.showOptionDialog(null, 
                         "Do you want to save this quiz before exiting?", "Save Quiz?", 
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                //present the confirming message
 
                 if ( exitComfirm== JOptionPane.NO_OPTION){
+                    //if the user choose "No"
                     this.dispose();
+                    //dispose this quiz menu window
                     newMainMenu.storeUnfinishQuiz(null);
+                    //clear the quiz menu stored in th main menu
                     newMainMenu.setVisible(true);
+                    //return to the main menu
                 }
                 else if ( exitComfirm== JOptionPane.YES_OPTION){
+                    //if the user choose "Yes"
                     storeBegnningSelections();
+                    //store the 
                     this.setVisible(false);
                     newMainMenu.storeUnfinishQuiz(this);
                     newMainMenu.setVisible(true);

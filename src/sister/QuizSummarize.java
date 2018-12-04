@@ -11,12 +11,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-import javax.swing.text.Element;
-import javax.swing.text.*;
 
 /**
  *
@@ -143,10 +138,10 @@ public class QuizSummarize extends javax.swing.JFrame {
                 "Do you want to submit?", 
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
-        //present a confirm message
+        //present the confirming message
         
         if(comfirm==JOptionPane.YES_OPTION){
-            //return to the main menu if the user choose "Yes"
+            //if the user choose "Yes"
             dispose();
             //dispose this quiz summarize window
             mainMenu.setVisible(true);
