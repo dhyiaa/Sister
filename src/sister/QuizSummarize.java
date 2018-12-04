@@ -129,8 +129,8 @@ public class QuizSummarize extends javax.swing.JFrame {
      * @param windowEvent 
      */
     private void exitOption(java.awt.event.WindowEvent windowEvent){
-        Object[] options = {"Yes",
-                "Cancel"};
+        
+        Object[] options = {"Yes","Cancel"};
         //the option buttons for the confirm message will be "Yes", and "Cancel"
         
         int comfirm=JOptionPane.showOptionDialog(null, 
@@ -138,16 +138,17 @@ public class QuizSummarize extends javax.swing.JFrame {
                 "Do you want to submit?", 
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
-        //present the confirming message
+        //present the confirm message
         
         if(comfirm==JOptionPane.YES_OPTION){
             //if the user choose "Yes"
+            
             dispose();
             //dispose this quiz summarize window
             mainMenu.setVisible(true);
             //return to the main menu
         }
-        //do nothing if the user does not choose "Yes"
+        //do nothing if the user choose "Cancel"
     }
 
     /**
