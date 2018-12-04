@@ -32,11 +32,9 @@ public class MainMenu extends javax.swing.JFrame {
         questions=readQuestions();
         notes=readNote();
         
-        topicName.add("Item 1");
-        topicName.add("Item 2");
-        topicName.add("Item 3");
-        topicName.add("Item 4");
-        topicName.add("Item 5");
+        for(int i=0;i<notes.size();i++){
+            topicName.add(notes.get(i).getTitle());
+        }
         
         topicList.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
@@ -50,6 +48,8 @@ public class MainMenu extends javax.swing.JFrame {
             
         }
         topicList.setModel(model);
+        
+        pack();
     }
     
     public void storeUnfinishQuiz(QuizMenu quiz){
@@ -109,7 +109,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane4)
                         .addContainerGap())
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +152,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         noteContent.setEditable(false);
         noteContent.setColumns(20);
+        noteContent.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        noteContent.setLineWrap(true);
         noteContent.setRows(5);
+        noteContent.setWrapStyleWord(true);
         noteContent.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(noteContent);
 
@@ -184,9 +187,9 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(beginQuiz, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE))
+                .addComponent(beginQuiz, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,12 +203,14 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -230,14 +235,14 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void topicSelected(){
         topicList.getSelectedValue();
-        noteContent.setText(topicList.getSelectedIndex()+"");
+        noteContent.setText(notes.get(topicList.getSelectedIndex()).getValue());
+        topicTitle.setText("--"+notes.get(topicList.getSelectedIndex()).getTitle()+"--");
     }
     
     private void beginQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginQuizActionPerformed
         // TODO add your handling code here:
         
         if(unfinishQuiz!=null){
-            System.out.println("!!!");
             Object[] options = {"Continue the unfinished quiz",
                     "Start a new quiz"};
             int comfirm=JOptionPane.showOptionDialog(null, 
@@ -249,20 +254,12 @@ public class MainMenu extends javax.swing.JFrame {
                 setVisible(false);
             }
             else{
-                System.out.println("!!");
-                for(int i=0;i<questions.size();i++){
-                    System.out.println(questions.get(i).getCurrentSelection());
-                }
                 unfinishQuiz.dispose();
                 newQuiz=new QuizMenu(this,questions);
                 newQuiz.setVisible(true);
                 setVisible(false);
             }
         }else{
-            System.out.println("!");
-            for(int i=0;i<questions.size();i++){
-                System.out.println(questions.get(i).getCurrentSelection());
-            }
             newQuiz=new QuizMenu(this,questions);
             newQuiz.setVisible(true);
             setVisible(false);
@@ -365,7 +362,7 @@ public class MainMenu extends javax.swing.JFrame {
             
             for (int i = 0; i < counter; i++) {
                 String[] selections = new String[4];
-                String content=br.readLine();
+                String content=(i+1)+". "+br.readLine();
                 
                 for (int j = 0; j < 4; j++) {
                     char index=(char)(j+65);

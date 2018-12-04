@@ -562,25 +562,33 @@ public class QuizMenu extends javax.swing.JFrame {
         boolean submit=true;
         
         storeAnswer(questionData.get(currentIndex));
+        int countBlank=0;
         for(int i=0;i<questionData.size();i++){
             if(questionData.get(i).getCurrentSelection()<0){
+                countBlank++;
                 unfinishedQuestion+=(i+1)+", ";
             }
         }
-        if(unfinishedQuestion.length()>0){
-            Object[] options = {"Submit",
-                    "Cancel"};
-            int comfirm=JOptionPane.showOptionDialog(null, 
-                    "Question "+unfinishedQuestion.substring(0, unfinishedQuestion.length()-2)
-                            +" is left blank, do you still want to submit?", 
-                    "Blank questions", 
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
-            if(comfirm==JOptionPane.NO_OPTION){
-                submit=false;
-            }
+        String confirmQuestion;
+        if(countBlank==0){
+            confirmQuestion=" Are you sure about submitting the quiz?";
         }
-        if(submit){
+        else if(countBlank==1){
+            confirmQuestion="Question "+unfinishedQuestion.substring(0, unfinishedQuestion.length()-2)
+                        +" is left blank, do you still want to submit?";
+        }
+        else{
+            confirmQuestion="Question "+unfinishedQuestion.substring(0, unfinishedQuestion.length()-2)
+                        +" are left blank, do you still want to submit?";
+        }
+        Object[] options = {"Submit",
+                "Cancel"};
+        int comfirm=JOptionPane.showOptionDialog(null, 
+                confirmQuestion, 
+                "Do you want to submit?", 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+        if(comfirm==JOptionPane.YES_OPTION){
             QuizSummarize summarize=new QuizSummarize(newMainMenu,questionData);
             setVisible(false);
             summarize.setVisible(true);
