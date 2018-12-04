@@ -368,8 +368,8 @@ public class MainMenu extends javax.swing.JFrame {
                 String content=br.readLine();
                 
                 for (int j = 0; j < 4; j++) {
-                
-                    selections[j] = br.readLine();
+                    char index=(char)(j+65);
+                    selections[j] = index+". "+br.readLine();
                     
                 }
 
