@@ -27,12 +27,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+          <Component id="textareaPanel" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="selectionRadioButtonPanel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="buttonPanel" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -41,18 +41,18 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <Component id="textareaPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <Component id="selectionRadioButtonPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="buttonPanel" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="textareaPanel">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -81,7 +81,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="questionContent">
+            <Component class="javax.swing.JTextArea" name="questionContentTextArea">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
@@ -104,18 +104,18 @@
         </Container>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel3">
+    <Container class="javax.swing.JPanel" name="selectionRadioButtonPanel">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="selectionA" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="selectionB" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="selectionC" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="selectionD" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="selectionE" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectionARadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectionBRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectionCRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectionDRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectionERadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -125,21 +125,21 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="selectionA" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectionARadioButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="selectionB" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectionBRadioButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="selectionC" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectionCRadioButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="selectionD" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectionDRadioButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="selectionE" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectionERadioButton" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JRadioButton" name="selectionA">
+        <Component class="javax.swing.JRadioButton" name="selectionARadioButton">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="selections"/>
@@ -151,10 +151,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionAActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionARadioButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="selectionB">
+        <Component class="javax.swing.JRadioButton" name="selectionBRadioButton">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="selections"/>
@@ -165,10 +165,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionBActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionBRadioButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="selectionC">
+        <Component class="javax.swing.JRadioButton" name="selectionCRadioButton">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="selections"/>
@@ -179,10 +179,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionCActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionCRadioButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="selectionD">
+        <Component class="javax.swing.JRadioButton" name="selectionDRadioButton">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="selections"/>
@@ -193,10 +193,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionDActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionDRadioButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="selectionE">
+        <Component class="javax.swing.JRadioButton" name="selectionERadioButton">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="selections"/>
@@ -207,63 +207,63 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionEActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectionERadioButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="buttonPanel">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lastQuestion" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="lastQuestionButton" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="questionIndexInput" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="questionIndexInputTextField" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Component id="totalQuestion" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="totalQuestionLabel" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nextQuestion" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="nextQuestionButton" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace pref="223" max="32767" attributes="0"/>
-                  <Component id="saveAnswer" min="-2" max="-2" attributes="0"/>
+                  <Component id="saveAnswerButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="submitAnswer" min="-2" max="-2" attributes="0"/>
+                  <Component id="submitAnswerButton" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                  <Component id="lastQuestion" alignment="3" max="32767" attributes="0"/>
-                  <Component id="questionIndexInput" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nextQuestion" alignment="3" max="32767" attributes="0"/>
-                  <Component id="totalQuestion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="submitAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="saveAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lastQuestionButton" alignment="3" max="32767" attributes="0"/>
+                  <Component id="questionIndexInputTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nextQuestionButton" alignment="3" max="32767" attributes="0"/>
+                  <Component id="totalQuestionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="submitAnswerButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="saveAnswerButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="nextQuestion">
+        <Component class="javax.swing.JButton" name="nextQuestionButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="&gt;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextQuestionActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextQuestionButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="lastQuestion">
+        <Component class="javax.swing.JButton" name="lastQuestionButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lastQuestionActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lastQuestionButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="questionIndexInput">
+        <Component class="javax.swing.JTextField" name="questionIndexInputTextField">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" value="1"/>
@@ -272,29 +272,29 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="questionIndexInputMousePressed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="questionIndexInputKeyPressed"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="questionIndexInputTextFieldMousePressed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="questionIndexInputTextFieldKeyPressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="totalQuestion">
+        <Component class="javax.swing.JLabel" name="totalQuestionLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="/10"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="submitAnswer">
+        <Component class="javax.swing.JButton" name="submitAnswerButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="submit"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitAnswerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitAnswerButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="saveAnswer">
+        <Component class="javax.swing.JButton" name="saveAnswerButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="save"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveAnswerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveAnswerButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
