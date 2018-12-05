@@ -9,10 +9,6 @@ package sister;
 
 import java.util.Objects;
 
-/**
- *
- * @author dhiaa
- */
 public class Note {
 
     private String value;
