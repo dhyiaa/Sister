@@ -10,10 +10,6 @@ package sister;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author zhuxiaoyu
- */
 public class QuizSummarize extends javax.swing.JFrame {
 
     private MainMenu mainMenu;
