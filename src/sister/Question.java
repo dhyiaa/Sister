@@ -9,10 +9,6 @@ package sister;
 import java.util.Arrays;
 import java.util.Objects;
 
-/**
- *
- * @author dhiaa
- */
 public class Question {
 
     private String content;
