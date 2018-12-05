@@ -19,61 +19,62 @@ import javax.swing.event.ListSelectionListener;
  * @author dhiaa
  */
 public class MainMenu extends javax.swing.JFrame {
+
     public QuizMenu newQuiz;
     //new QuizMenu
     public QuizMenu unfinishQuiz;
     //unfinished QuizMenu
-    
+
     public ArrayList<Note> notes;
     //an ArrayList of notes
     public ArrayList<Question> questions;
     //an ArrayList of questions
-    public ArrayList<String> topicName=new ArrayList();
+    public ArrayList<String> topicName = new ArrayList();
     //an ArrayList of titles for each topic in the notes
-    
+
     /**
-     * Creates new form MainMenu
-     * default constructor
+     * Creates new form MainMenu default constructor
      */
     public MainMenu() {
-        
+
         initComponents();
-        
-        questions=readQuestions();
+
+        questions = readQuestions();
         //call the readQuestions() to read questions from the file and store in questions
-        notes=readNote();
+        notes = readNote();
         //call the readNote() to read notes from the file and store in notes
-        
-        for(int i=0;i<notes.size();i++){
+
+        for (int i = 0; i < notes.size(); i++) {
             topicName.add(notes.get(i).getTitle());
             //store titles for each topic from the notes in the topicName
         }
-        
+
         topicList.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 //listen for valueChange event in topicList
-                    topicSelected();
-                }
+                topicSelected();
+            }
         });
-        
-        DefaultListModel model=new DefaultListModel();
-        for(int i=0;i<topicName.size();i++){
-                model.addElement(topicName.get(i));
-            
+
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < topicName.size(); i++) {
+            model.addElement(topicName.get(i));
+
         }
         topicList.setModel(model);
         //list all the topic titles from the topicName in the topicList
-        
+
         pack();
         //pack the jFrame
     }
-    
+
     /**
      * store an unfinished quiz
+     *
      * @param quiz = a QuizMenu
      */
-    public void storeUnfinishQuiz(QuizMenu quiz){
-        unfinishQuiz=quiz;
+    public void storeUnfinishQuiz(QuizMenu quiz) {
+        unfinishQuiz = quiz;
     }
 
     /**
@@ -252,55 +253,55 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     /**
-     * set the texts of noteContentTextArea and topicTitleLabel due to the seleceted index og topicList
+     * set the texts of noteContentTextArea and topicTitleLabel due to the
+     * seleceted index og topicList
      */
-    private void topicSelected(){
+    private void topicSelected() {
         noteContentTextArea.setText(notes.get(topicList.getSelectedIndex()).getValue());
-        topicTitleLabel.setText("--"+notes.get(topicList.getSelectedIndex()).getTitle()+"--");
+        topicTitleLabel.setText("--" + notes.get(topicList.getSelectedIndex()).getTitle() + "--");
     }
-    
+
     /**
      * beginQuizButton clicked action
-     * @param evt 
+     *
+     * @param evt
      */
     private void beginQuizButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beginQuizButtonActionPerformed
         // TODO add your handling code here:
-        
+
         //check if there is an unfinished quiz
-        if(unfinishQuiz!=null){
+        if (unfinishQuiz != null) {
             //if there is an unfinished quiz
-            
-            Object[] options = {"Continue the unfinished quiz","Start a new quiz"};
+
+            Object[] options = {"Continue the unfinished quiz", "Start a new quiz"};
             //the option buttons for the confirm message will be "Continue the unfinished quiz", and "Start a new quiz"
-            int comfirm=JOptionPane.showOptionDialog(null, 
-                    "You have an unfinished quiz, do you what to continue?", "Save Test?", 
+            int comfirm = JOptionPane.showOptionDialog(null,
+                    "You have an unfinished quiz, do you what to continue?", "Save Test?",
                     JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             //present the confirm message
-            
-            if(comfirm==JOptionPane.YES_OPTION){
+
+            if (comfirm == JOptionPane.YES_OPTION) {
                 //if the user choose "Continue the unfinished quiz"
-                
+
                 unfinishQuiz.setVisible(true);
                 //popup the unfinished quiz menu window
-            }
-            else{
+            } else {
                 //if the user choose "Start a new quiz"
-                
+
                 unfinishQuiz.dispose();
                 //dispose the unfinished quiz menu
-                newQuiz=new QuizMenu(this,questions);
+                newQuiz = new QuizMenu(this, questions);
                 //create a new QuizMenu JFrame Window with attributes of mainMenu and questionData
                 newQuiz.setVisible(true);
                 //popup the new quiz menu window
             }
-        }
-        else{
+        } else {
             //if there is no unfinished quiz
-            
-            newQuiz=new QuizMenu(this,questions);
+
+            newQuiz = new QuizMenu(this, questions);
             //create a new QuizMenu JFrame Window, storing this main menu, and the ArrayList of Questions
             newQuiz.setVisible(true);
             //popup the new quiz menu window
@@ -308,22 +309,22 @@ public class MainMenu extends javax.swing.JFrame {
         setVisible(false);
         //set this main menu window invisible
     }//GEN-LAST:event_beginQuizButtonActionPerformed
-    
+
     /**
-     * topicList Mousemoved action
-     * add an underline to the title hovered over by the mouse in the topicList
-     * @param evt 
+     * topicList Mousemoved action add an underline to the title hovered over by
+     * the mouse in the topicList
+     *
+     * @param evt
      */
     private void topicListMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topicListMouseMoved
         // TODO add your handling code here:
         int index = topicList.locationToIndex(evt.getPoint());
-        DefaultListModel model=new DefaultListModel();
-        for(int i=0;i<topicName.size();i++){
-            if(i==index){
-                ((DefaultListModel)topicList.getModel()).set(i, "<html><u>"+topicName.get(i)+"</u></html>");
-            }
-            else{
-                ((DefaultListModel)topicList.getModel()).set(i, topicName.get(i));
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < topicName.size(); i++) {
+            if (i == index) {
+                ((DefaultListModel) topicList.getModel()).set(i, "<html><u>" + topicName.get(i) + "</u></html>");
+            } else {
+                ((DefaultListModel) topicList.getModel()).set(i, topicName.get(i));
             }
         }
     }//GEN-LAST:event_topicListMouseMoved
@@ -362,25 +363,26 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
     }
-    
+
     /**
      * read the notes from the Notes file
+     *
      * @return an ArraList of Notes
      */
     public ArrayList<Note> readNote() {
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(MainMenu.class.getResourceAsStream("Notes.txt")))) {
-            
+
             ArrayList<Note> notes = new ArrayList<>();
             //instantiate an ArraList of Notes
-            
+
             String value;
             String title;
             int counter = Integer.parseInt(br.readLine());
             //read the number of notes
-            
+
             for (int i = 0; i < counter; i++) {
-            
+
                 title = br.readLine();
                 //read the title of the topic
                 value = br.readLine();
@@ -388,73 +390,70 @@ public class MainMenu extends javax.swing.JFrame {
                 notes.add(new Note(value, title));
                 //add a the Note with attributes of value and title to the ArrayList notes
             }
-            
+
             br.close();
-            
+
             return notes;
-            
-        }
-        
-        catch (IOException e) {
-        
+
+        } catch (IOException e) {
+
             System.out.println("Error: " + e.toString());
             //print the error
         }
-        
+
         return null;
         //return null at the end
     }
-    
+
     /**
      * read the notes from the Questions file
+     *
      * @return an ArraList of Questions
      */
     public ArrayList<Question> readQuestions() {
-    
+
         try (BufferedReader br = new BufferedReader(new InputStreamReader(MainMenu.class.getResourceAsStream("Questions.txt")))) {
-            
+
             ArrayList<Question> questions = new ArrayList<>();
             //instantiate an ArraList ofQuestions
-            
+
             int counter = Integer.parseInt(br.readLine());
             //read the total number of questions
-            
+
             for (int i = 0; i < counter; i++) {
-                
-                String content=(i+1)+". "+br.readLine();
+
+                String content = (i + 1) + ". " + br.readLine();
                 //read the content of each question
-                
-                int questionCounter=Integer.parseInt(br.readLine());
+
+                int questionCounter = Integer.parseInt(br.readLine());
                 //read the total number of selections of this question
-                
+
                 String[] selections = new String[questionCounter];
                 //initiate an Array to store all of the selection contents of length questionCounter
                 int correctSelection;
-                
+
                 for (int j = 0; j < questionCounter; j++) {
-                    char index=(char)(j+65);
-                    selections[j] = index+". "+br.readLine();
+                    char index = (char) (j + 65);
+                    selections[j] = index + ". " + br.readLine();
                     //read the content of each selection
                 }
 
                 correctSelection = Integer.parseInt(br.readLine());
                 //read the correct selection
-                
-                questions.add(new Question(content,selections,correctSelection));
+
+                questions.add(new Question(content, selections, correctSelection));
                 //add a Question with attributes of content, selections and correctSelection to the ArrayList questions
             }
-            
+
             br.close();
             return questions;
-            
-        }
-        
-        catch (IOException e) {
-        
+
+        } catch (IOException e) {
+
             System.out.println("Error: " + e.toString());
             //print the error
         }
-        
+
         return null;
         //return null at the end
     }

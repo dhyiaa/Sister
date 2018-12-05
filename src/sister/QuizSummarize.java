@@ -7,9 +7,6 @@
  */
 package sister;
 
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -18,16 +15,16 @@ import javax.swing.JOptionPane;
  * @author zhuxiaoyu
  */
 public class QuizSummarize extends javax.swing.JFrame {
+
     private MainMenu mainMenu;
     //the main menu
-    private ArrayList<Question> questionData=new ArrayList();
+    private ArrayList<Question> questionData = new ArrayList();
     //an ArrayList of Questions
-    private static String summarize="";
+    private static String summarize = "";
     //the output summarize String
-    
+
     /**
-     * Creates new form QuizSummarize
-     * default constructor
+     * Creates new form QuizSummarize default constructor
      */
     public QuizSummarize() {
         initComponents();
@@ -37,112 +34,109 @@ public class QuizSummarize extends javax.swing.JFrame {
                 //listen for the window closing event
                 exitOption(windowEvent);
             }
-            
+
         });
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         //this window will not exit directly on close
     }
-    
+
     /**
-     * Creates new form QuizSummarize
-     * secondary constructor
+     * Creates new form QuizSummarize secondary constructor
+     *
      * @param mainMenu = the main menu
-     * @param questionData = an ArrayList of Questions
-     * each Question contains the question content, selection contents, user selection, and the correct answer
+     * @param questionData = an ArrayList of Questions each Question contains
+     * the question content, selection contents, user selection, and the correct
+     * answer
      */
-    public QuizSummarize(MainMenu mainMenu,ArrayList<Question> questionData){
+    public QuizSummarize(MainMenu mainMenu, ArrayList<Question> questionData) {
         this();
         //link to the default constructor
-        this.mainMenu=mainMenu;
+        this.mainMenu = mainMenu;
         //set mainMenu equal to the @param Mainmenu
-        this.questionData=questionData;
+        this.questionData = questionData;
         //set questionData equal to the @param questionData
-        
+
         giveSummarize();
         //call the giveSummarize() method
     }
-    
+
     /**
      * generate the quiz summarize String
      */
-    private void giveSummarize(){
-        int userScore=questionData.size();
+    private void giveSummarize() {
+        int userScore = questionData.size();
         //set the userScore to full mark
-        
-        for(int i=0;i<questionData.size();i++){
+
+        for (int i = 0; i < questionData.size(); i++) {
             //search through the ArrayList questionData, and inspect each Question
-            if(questionData.get(i).getCurrentSelection()!=questionData.get(i).getCorrectSelection()){
+            if (questionData.get(i).getCurrentSelection() != questionData.get(i).getCorrectSelection()) {
                 //if the user's answer is not correct
-                summarize+="<pre><b>WRONG: </b>";
+                summarize += "<pre><b>WRONG: </b>";
                 //add a bold "WRONG: " before the question content
                 userScore--;
                 //subtract the userScore by 1
-            }
-            else{
-                summarize+="<pre><b>CORRECT: </b>";
+            } else {
+                summarize += "<pre><b>CORRECT: </b>";
                 //add a bold "CORRECT: " before the question content
             }
-            summarize+=questionData.get(i).getContent();
+            summarize += questionData.get(i).getContent();
             //add the question content to the summarize output
-            
-            for(int j=0;j<questionData.get(i).getSelections().length;j++){
+
+            for (int j = 0; j < questionData.get(i).getSelections().length; j++) {
                 //summarize+="<li>";
-                summarize+="<pre>   ";
+                summarize += "<pre>   ";
                 //add a tab before each selection
-                
-                if(j==questionData.get(i).getCurrentSelection()&&j==questionData.get(i).getCorrectSelection()){
+
+                if (j == questionData.get(i).getCurrentSelection() && j == questionData.get(i).getCorrectSelection()) {
                     //if the selection is the user's answer, and is also the correct answer
-                    summarize+="<b><font size=+0.5><u>"+questionData.get(i).getSelections()[j]+"(Correct Answer)</u></font></b>";
+                    summarize += "<b><font size=+0.5><u>" + questionData.get(i).getSelections()[j] + "(Correct Answer)</u></font></b>";
                     //add bold, underlined, and enlarged selection content to the summarize output
-                }
-                else if(j==questionData.get(i).getCurrentSelection()){
+                } else if (j == questionData.get(i).getCurrentSelection()) {
                     //if the selection is the user's answer
-                    summarize+="<b>"+questionData.get(i).getSelections()[j]+"</b>";
+                    summarize += "<b>" + questionData.get(i).getSelections()[j] + "</b>";
                     //add bold selection content to the summarize output
-                }
-                
-                else if(j==questionData.get(i).getCorrectSelection()){
+                } else if (j == questionData.get(i).getCorrectSelection()) {
                     //if the selection is the correct answer
-                    summarize+="<u>"+questionData.get(i).getSelections()[j]+"(Correct Answer)</u>";
+                    summarize += "<u>" + questionData.get(i).getSelections()[j] + "(Correct Answer)</u>";
                     //add underlined selection content to the summarize output
-                }
-                else{
+                } else {
                     ////if the selection is neither the user's answer, nor the correct answer
-                    summarize+=questionData.get(i).getSelections()[j];
+                    summarize += questionData.get(i).getSelections()[j];
                     //add selection content to the summarize output
                 }
                 //summarize+="</li>";
-                summarize+="<br/>";
+                summarize += "<br/>";
                 //each selection begins at a new line
             }
-            summarize+="<br/>";
+            summarize += "<br/>";
             //add another line after each question
         }
-        scoreLabel.setText(userScore+"/"+questionData.size());
+        scoreLabel.setText(userScore + "/" + questionData.size());
         //set the scoreLabel's text to the form of (user's score/full score)
         summarizeEditorPane.setText(summarize);
         //output the quiz summarize
     }
-    
+
     /**
      * the action to perform when exit is clicked
-     * @param windowEvent 
+     *
+     * @param windowEvent
      */
-    private void exitOption(java.awt.event.WindowEvent windowEvent){
-        
-        Object[] options = {"Yes","Cancel"};
+    private void exitOption(java.awt.event.WindowEvent windowEvent) {
+
+        Object[] options = {"Yes", "Cancel"};
         //the option buttons for the confirm message will be "Yes", and "Cancel"
-        
-        int comfirm=JOptionPane.showOptionDialog(null, 
-                "Do you want to return to the main menu?", 
-                "Do you want to submit?", 
+
+        int comfirm = JOptionPane.showOptionDialog(null,
+                "Do you want to return to the main menu?",
+                "Do you want to submit?",
                 JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         //present the confirm message
-        
-        if(comfirm==JOptionPane.YES_OPTION){
+
+        if (comfirm == JOptionPane.YES_OPTION) {
             //if the user choose "Yes"
-            
+
             dispose();
             //dispose this quiz summarize window
             mainMenu.setVisible(true);
@@ -210,7 +204,7 @@ public class QuizSummarize extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel scoreLabel;
     private javax.swing.JEditorPane summarizeEditorPane;

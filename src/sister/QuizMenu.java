@@ -7,7 +7,6 @@
  */
 package sister;
 
-import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -18,27 +17,27 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
  *
  * @author zhuxiaoyu
  */
-public class QuizMenu extends javax.swing.JFrame implements KeyListener{
+public class QuizMenu extends javax.swing.JFrame implements KeyListener {
+
     private MainMenu mainMenu;
     //the main menu
-    private ArrayList<Question> questionData=new ArrayList();
+    private ArrayList<Question> questionData = new ArrayList();
     //an ArrayList of Questions
     private int[] beginningSelection;
     //an Array to store the user's answers
-    private int currentIndex=0;
+    private int currentIndex = 0;
     //the current question's index
     private int totalQuestionNum;
     //the total number of questions
-    private boolean countA=false,countB=false,countC=false,countD=false,countE=false;
+    private boolean countA = false, countB = false, countC = false, countD = false, countE = false;
     //boolean values that indicate whether each selection from A to E is selected
-    
+
     /**
-     * Creates new form QuizMenu
-     * default constructor
+     * Creates new form QuizMenu default constructor
      */
     public QuizMenu() {
         initComponents();
-        
+
         setFocusable(true);
         addKeyListener(this);
         selectionARadioButton.addKeyListener(this);
@@ -52,130 +51,134 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         nextQuestionButton.addKeyListener(this);
         lastQuestionButton.addKeyListener(this);
         //add key listeners for the JFrame, selection radio buttons, question content text area, next/last/save/submit buttons
-        
+
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 //listen for the window closing event
                 exitOption(windowEvent);
             }
-            
+
         });
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         //this window will not exit directly on close
     }
-    
+
     /**
      * secondary constructor
+     *
      * @param mainmenu = the main menu
-     * @param questionData = an ArrayList of Questions
-     * each Question contains the question content, selection contents, user selection, and the correct answer
+     * @param questionData = an ArrayList of Questions each Question contains
+     * the question content, selection contents, user selection, and the correct
+     * answer
      */
-    public QuizMenu(MainMenu mainmenu,ArrayList<Question> questionData){
+    public QuizMenu(MainMenu mainmenu, ArrayList<Question> questionData) {
         this();
         //link to the default constructor
-        this.mainMenu=mainmenu;
+        this.mainMenu = mainmenu;
         //set mainMenu equal to the @param Mainmenu
-        
-        for(int i=0;i<questionData.size();i++){
+
+        for (int i = 0; i < questionData.size(); i++) {
             this.questionData.add(questionData.get(i).cloneQuestion());
         }
         //set questionData equal to the clone of @param questionData
-        
+
         setContent(questionData.get(currentIndex));
         //call the setContent(Question q) method to present the currentIndex-th question
-        totalQuestionNum=questionData.size();
+        totalQuestionNum = questionData.size();
         //set the total question number of questions
-        totalQuestionLabel.setText("/"+totalQuestionNum);
+        totalQuestionLabel.setText("/" + totalQuestionNum);
         //set the text of the totalQuestion label
-        beginningSelection=new int[totalQuestionNum];
+        beginningSelection = new int[totalQuestionNum];
         //initiate the begnningSelection array
         storeBegnningSelections();
         //call the storeBegnningSelections() method to store the current user selections
     }
-    
+
     /**
      * store the current user selections in the begnningSelection
      */
-    public void storeBegnningSelections(){
-        for(int i=0;i<questionData.size();i++){
-            beginningSelection[i]=questionData.get(i).getCurrentSelection();
+    public void storeBegnningSelections() {
+        for (int i = 0; i < questionData.size(); i++) {
+            beginningSelection[i] = questionData.get(i).getCurrentSelection();
         }
     }
-    
+
     /**
      * check if any change has been made since starting the quiz
+     *
      * @return if any change has been made
      */
-    private boolean checkChanges(){
-        boolean change=false;
+    private boolean checkChanges() {
+        boolean change = false;
         //set the change value to false
-        for(int i=0;i<questionData.size();i++){
-            if(beginningSelection[i]!=questionData.get(i).getCurrentSelection()){
+        for (int i = 0; i < questionData.size(); i++) {
+            if (beginningSelection[i] != questionData.get(i).getCurrentSelection()) {
                 //if the stored user selection is not equal to the current user selection
-                change=true;
+                change = true;
                 //set change to true
                 break;
             }
         }
         return change;
     }
-    
+
     /**
      * check if any change has been made compared to a blank quiz
+     *
      * @return if any change has been made compared to a blank quiz
      */
-    private boolean checkAnyChange(){
-        boolean change=false;
+    private boolean checkAnyChange() {
+        boolean change = false;
         //set the change value to false
-        for(int i=0;i<questionData.size();i++){
-            if(questionData.get(i).getCurrentSelection()!=-1){
+        for (int i = 0; i < questionData.size(); i++) {
+            if (questionData.get(i).getCurrentSelection() != -1) {
                 //if the current user selection is not equal -1
-                change=true;
+                change = true;
                 //set change to true
                 break;
             }
         }
         return change;
     }
-    
+
     /**
      * the action to perform when exit is clicked
-     * @param windowEvent 
+     *
+     * @param windowEvent
      */
-    private void exitOption(java.awt.event.WindowEvent windowEvent){
+    private void exitOption(java.awt.event.WindowEvent windowEvent) {
         storeAnswer(questionData.get(currentIndex));
         //call the storeAnswer(Question q) metod to store the user selection of the current question
-        
+
         //call the checkAnyChange() method to check if the quiz is blank
-        if(checkAnyChange()){
+        if (checkAnyChange()) {
             //if the quiz is not blank
-            
+
             //call the checkChanges() method to check if the quiz is changed comparing to the stored user selections
-            if(checkChanges()){
+            if (checkChanges()) {
                 //if changes have been made
-                
-                Object[] options = {"Yes","No","Cancel"};
+
+                Object[] options = {"Yes", "No", "Cancel"};
                 //the option buttons for the confirm message will be "Yes", "No", and "Cancel"
-                int exitComfirm=JOptionPane.showOptionDialog(null, 
-                        "Do you want to save this quiz before exiting?", "Save Quiz?", 
+                int exitComfirm = JOptionPane.showOptionDialog(null,
+                        "Do you want to save this quiz before exiting?", "Save Quiz?",
                         JOptionPane.YES_NO_CANCEL_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                        JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 //present the confirm message
 
-                if ( exitComfirm== JOptionPane.NO_OPTION){
+                if (exitComfirm == JOptionPane.NO_OPTION) {
                     //if the user choose "No"
-                    
+
                     this.dispose();
                     //dispose this quiz menu window
                     mainMenu.storeUnfinishQuiz(null);
                     //clear the quiz menu stored in th main menu
                     mainMenu.setVisible(true);
                     //return to the main menu
-                }
-                else if ( exitComfirm== JOptionPane.YES_OPTION){
+                } else if (exitComfirm == JOptionPane.YES_OPTION) {
                     //if the user choose "Yes"
-                    
+
                     storeBegnningSelections();
                     //call the storeBegnningSelections() to store the current user selections
                     this.setVisible(false);
@@ -186,21 +189,20 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
                     //return to the main menu
                 }
                 //do nothing if the user choose "Cancel"
-            }
-            else{
+            } else {
                 //if no change has been made
-                
-                Object[] options = {"Yes","Cancel"};
+
+                Object[] options = {"Yes", "Cancel"};
                 //the option buttons for the confirm message will be "Yes", and "Cancel"
-                int exitComfirm=JOptionPane.showOptionDialog(null, 
-                        "Do you want to exit this quiz?", "Exit quiz?", 
+                int exitComfirm = JOptionPane.showOptionDialog(null,
+                        "Do you want to exit this quiz?", "Exit quiz?",
                         JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                        JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 //present the confirm message
-                
-                if ( exitComfirm== JOptionPane.YES_OPTION){
+
+                if (exitComfirm == JOptionPane.YES_OPTION) {
                     //if the user choose "Yes"
-                    
+
                     this.setVisible(false);
                     //set this quiz menu window invisible
                     mainMenu.storeUnfinishQuiz(this);
@@ -210,10 +212,9 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
                 }
                 //do nothing if the user choose "Cancel"
             }
-        }
-        else{
+        } else {
             //if the quiz is blank
-            
+
             this.dispose();
             //dispose this quiz menu window
             mainMenu.storeUnfinishQuiz(null);
@@ -222,58 +223,56 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
             //return to the main menu
         }
     }
-    
+
     /**
      * store the main menu
+     *
      * @param menu = main menu
      */
-    public void storeMainMenu(MainMenu menu){
-        this.mainMenu=menu;
+    public void storeMainMenu(MainMenu menu) {
+        this.mainMenu = menu;
     }
-    
+
     /**
      * store the answer of the current question
+     *
      * @param q = Question
      */
-    private void storeAnswer(Question q){
-        if(selectionARadioButton.isSelected()){
+    private void storeAnswer(Question q) {
+        if (selectionARadioButton.isSelected()) {
             //case selection A, store as 0
             q.setCurrentSelection(0);
-        }
-        else if(selectionBRadioButton.isSelected()){
+        } else if (selectionBRadioButton.isSelected()) {
             //case selection B, store as 1
             q.setCurrentSelection(1);
-        }
-        else if(selectionCRadioButton.isSelected()){
+        } else if (selectionCRadioButton.isSelected()) {
             //case selection C, store as 2
             q.setCurrentSelection(2);
-        }
-        else if(selectionDRadioButton.isSelected()){
+        } else if (selectionDRadioButton.isSelected()) {
             //case selection D, store as 3
             q.setCurrentSelection(3);
-        }
-        else if(selectionERadioButton.isSelected()){
+        } else if (selectionERadioButton.isSelected()) {
             //case selection E, store as 4
             q.setCurrentSelection(4);
-        }
-        else{
+        } else {
             //case no selection, store as -1
             q.setCurrentSelection(-1);
         }
     }
-    
+
     /**
      * present the Question q
+     *
      * @param q = Question
      */
-    private void setContent(Question q){
-        countA=false;
-        countB=false;
-        countC=false;
-        countD=false;
-        countE=false;
+    private void setContent(Question q) {
+        countA = false;
+        countB = false;
+        countC = false;
+        countD = false;
+        countE = false;
         //set the boolean values that indicate whether each selection from A to E is selected to false
-        
+
         questionContentTextArea.setText(q.getContent());
         //set the question content
         selectionARadioButton.setText(q.getSelections()[0]);
@@ -281,57 +280,48 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         selectionCRadioButton.setText(q.getSelections()[2]);
         selectionDRadioButton.setText(q.getSelections()[3]);
         //set the selection content for selections A to D
-        
+
         //check if the Question q has more than 4 selections
-        if(q.getSelections().length>4){
+        if (q.getSelections().length > 4) {
             //if q has more than 4 selections
             selectionERadioButton.setVisible(true);
             //set selection E visible
             selectionERadioButton.setText(q.getSelections()[4]);
             //set the selection content for selection E
-        }
-        else{
+        } else {
             //if q only has 4 selections
             selectionERadioButton.setVisible(false);
             //set selection E invisible
         }
-        int s=q.getCurrentSelection();
+        int s = q.getCurrentSelection();
         //store the current for Question q
-        
-        /**set the selection radio buttons
-         * s=0 -> selection A
-         * s=1 -> selection B
-         * s=2 -> selection C
-         * s=3 -> selection D
-         * s=4 -> selection E
-         * s=-1 -> no selection
+
+        /**
+         * set the selection radio buttons s=0 -> selection A s=1 -> selection B
+         * s=2 -> selection C s=3 -> selection D s=4 -> selection E s=-1 -> no
+         * selection
          */
-        if(s==0){
+        if (s == 0) {
             selectionARadioButton.setSelected(true);
-            countA=true;
-        }
-        else if(s==1){
+            countA = true;
+        } else if (s == 1) {
             selectionBRadioButton.setSelected(true);
-             countB=true;
-        }
-        else if(s==2){
+            countB = true;
+        } else if (s == 2) {
             selectionCRadioButton.setSelected(true);
-             countC=true;
-        }
-        else if(s==3){
+            countC = true;
+        } else if (s == 3) {
             selectionDRadioButton.setSelected(true);
-             countD=true;
-        }
-        else if(s==4){
+            countD = true;
+        } else if (s == 4) {
             selectionERadioButton.setSelected(true);
-             countE=true;
-        }
-        else{
+            countE = true;
+        } else {
             selections.clearSelection();
         }
-        questionIndexInputTextField.setText(currentIndex+1+"");
+        questionIndexInputTextField.setText(currentIndex + 1 + "");
         //set the content for questionIndexInputTextField to the (currentIndex + 1)
-        
+
         pack();
         //pack the jFrame
     }
@@ -565,23 +555,23 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     /**
      * nextQuestionButton clicked action
-     * @param evt 
+     *
+     * @param evt
      */
     private void nextQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextQuestionButtonActionPerformed
         // TODO add your handling code here:
         storeAnswer(questionData.get(currentIndex));
         //call the storeAnswer(Question q) metod to store the user selection of the current question
-        
+
         //check if the currentIndex has reached the maximum question index
-        if(currentIndex==totalQuestionNum-1){
+        if (currentIndex == totalQuestionNum - 1) {
             //if currentIndex is the the maximum question index
-            
+
             //do nothing
-        }
-        else{
+        } else {
             //if currentIndex hasn't reached the the maximum question index
             currentIndex++;
             //move to the next question
@@ -589,23 +579,23 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
             //call the setContent(Question q) method to present the currentIndex-th question
         }
     }//GEN-LAST:event_nextQuestionButtonActionPerformed
-    
+
     /**
      * lastQuestionButton clicked action
-     * @param evt 
+     *
+     * @param evt
      */
     private void lastQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastQuestionButtonActionPerformed
         // TODO add your handling code here:
         storeAnswer(questionData.get(currentIndex));
         //call the storeAnswer(Question q) metod to store the user selection of the current question
-        
+
         //check if the currentIndex has reached the minimum question index
-        if(currentIndex==0){
+        if (currentIndex == 0) {
             //if currentIndex is the the maximum question index
-            
+
             //do nothing
-        }
-        else{
+        } else {
             //if currentIndex hasn't reached the the minimum question index
             currentIndex--;
             //move to the last question
@@ -613,166 +603,167 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
             //call the setContent(Question q) method to present the currentIndex-th question
         }
     }//GEN-LAST:event_lastQuestionButtonActionPerformed
-    
+
     /**
      * questionIndexInputTextField Keypressed action
-     * @param evt 
+     *
+     * @param evt
      */
     private void questionIndexInputTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_questionIndexInputTextFieldKeyPressed
         // TODO add your handling code here:
         storeAnswer(questionData.get(currentIndex));
         //call the storeAnswer(Question q) metod to store the user selection of the current question
-        
+
         //read the keyboard input
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             //if ENTER is pressed
-            try{
-                int index=Integer.parseInt(questionIndexInputTextField.getText())-1;
+            try {
+                int index = Integer.parseInt(questionIndexInputTextField.getText()) - 1;
                 //get the index input
-                if(index<0){
+                if (index < 0) {
                     //if the index input is smaller than the minimum question index
-                    index=0;
+                    index = 0;
                     //set index input to the minimum index
-                }
-                else if(index>=totalQuestionNum){
+                } else if (index >= totalQuestionNum) {
                     //if the index input is greater than the maximum question index
-                    index=totalQuestionNum-1;
+                    index = totalQuestionNum - 1;
                     //set index input to the maximum index
                 }
-                currentIndex=index;
+                currentIndex = index;
                 //set new currentIndex equal to index input
                 setContent(questionData.get(currentIndex));
                 //call the setContent(Question q) method to present the currentIndex-th question
-            }
-            catch(NumberFormatException e){
-                System.out.println("Error: "+e);
+            } catch (NumberFormatException e) {
+                System.out.println("Error: " + e);
             }
             questionIndexInputTextField.selectAll();
             //selection all characters in the questionInputTextField
         }
     }//GEN-LAST:event_questionIndexInputTextFieldKeyPressed
-    
+
     /**
      * questionIndexInputTextField Mousepressed action
-     * @param evt 
+     *
+     * @param evt
      */
     private void questionIndexInputTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_questionIndexInputTextFieldMousePressed
         // TODO add your handling code here:
-            questionIndexInputTextField.selectAll();
-            //selection all characters in the questionInputTextField
+        questionIndexInputTextField.selectAll();
+        //selection all characters in the questionInputTextField
     }//GEN-LAST:event_questionIndexInputTextFieldMousePressed
-    
+
     /**
-     * selectionARadioButton clicked action
-     * a second click will deselect the selection
-     * @param evt 
+     * selectionARadioButton clicked action a second click will deselect the
+     * selection
+     *
+     * @param evt
      */
     private void selectionARadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionARadioButtonActionPerformed
         // TODO add your handling code here:
         //check if selection A is already selected
-        if(countA){
+        if (countA) {
             //if selection A is already selected
-            
+
             selections.clearSelection();
             //deselect all selections
-            countA=false;
+            countA = false;
             //set the boolean values that indicate whether selection A is selected to false
-        }
-        else{
-            countA=true;
+        } else {
+            countA = true;
             //set the boolean values that indicate whether selection A is selected to true
         }
-        countB=false;
-        countC=false;
-        countD=false;
-        countE=false;
+        countB = false;
+        countC = false;
+        countD = false;
+        countE = false;
         //set the boolean values that indicate whether each selection from B to E is selected to false
     }//GEN-LAST:event_selectionARadioButtonActionPerformed
-    
+
     /**
-     * selectionBRadioButton clicked action
-     * a second click will deselect the selection
-     * @param evt 
+     * selectionBRadioButton clicked action a second click will deselect the
+     * selection
+     *
+     * @param evt
      */
     private void selectionBRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionBRadioButtonActionPerformed
         // TODO add your handling code here:
-        if(countB){
+        if (countB) {
             selections.clearSelection();
-            countB=false;
-            
+            countB = false;
+
+        } else {
+            countB = true;
         }
-        else{
-            countB=true;
-        }
-        countA=false;
-        countC=false;
-        countD=false;
-        countE=false;
+        countA = false;
+        countC = false;
+        countD = false;
+        countE = false;
     }//GEN-LAST:event_selectionBRadioButtonActionPerformed
-    
+
     /**
-     * selectionCRadioButton clicked action
-     * a second click will deselect the selection
-     * @param evt 
+     * selectionCRadioButton clicked action a second click will deselect the
+     * selection
+     *
+     * @param evt
      */
     private void selectionCRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionCRadioButtonActionPerformed
         // TODO add your handling code here:
-        if(countC){
+        if (countC) {
             selections.clearSelection();
-            countC=false;
+            countC = false;
+        } else {
+            countC = true;
         }
-        else{
-            countC=true;
-        }
-        countA=false;
-        countB=false;
-        countD=false;
-        countE=false;
+        countA = false;
+        countB = false;
+        countD = false;
+        countE = false;
     }//GEN-LAST:event_selectionCRadioButtonActionPerformed
-    
+
     /**
-     * selectionDRadioButton clicked action
-     * a second click will deselect the selection
-     * @param evt 
+     * selectionDRadioButton clicked action a second click will deselect the
+     * selection
+     *
+     * @param evt
      */
     private void selectionDRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionDRadioButtonActionPerformed
         // TODO add your handling code here:
-        if(countD){
+        if (countD) {
             selections.clearSelection();
-            countD=false;
+            countD = false;
+        } else {
+            countD = true;
         }
-        else{
-            countD=true;
-        }
-        countA=false;
-        countB=false;
-        countC=false;
-        countE=false;
+        countA = false;
+        countB = false;
+        countC = false;
+        countE = false;
     }//GEN-LAST:event_selectionDRadioButtonActionPerformed
-    
+
     /**
-     * selectionERadioButton clicked action
-     * a second click will deselect the selection
-     * @param evt 
+     * selectionERadioButton clicked action a second click will deselect the
+     * selection
+     *
+     * @param evt
      */
     private void selectionERadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectionERadioButtonActionPerformed
         // TODO add your handling code here:
-        if(countE){
+        if (countE) {
             selections.clearSelection();
-            countE=false;
+            countE = false;
+        } else {
+            countE = true;
         }
-        else{
-            countE=true;
-        }
-        countA=false;
-        countB=false;
-        countC=false;
-        countD=false;
+        countA = false;
+        countB = false;
+        countC = false;
+        countD = false;
     }//GEN-LAST:event_selectionERadioButtonActionPerformed
-    
+
     /**
      * saveAnswerButton clicked action
-     * @param evt 
+     *
+     * @param evt
      */
     private void saveAnswerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAnswerButtonActionPerformed
         // TODO add your handling code here:
@@ -780,67 +771,66 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         //call the storeAnswer(Question q) metod to store the user selection of the current question
         storeBegnningSelections();
         //call the storeBegnningSelections() to store the current user selections
-    
+
     }//GEN-LAST:event_saveAnswerButtonActionPerformed
-    
+
     /**
      * saveAnswerButton clicked action
-     * @param evt 
+     *
+     * @param evt
      */
     private void submitAnswerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitAnswerButtonActionPerformed
         // TODO add your handling code here:
-        String unfinishedQuestion="";
+        String unfinishedQuestion = "";
         //store the index of blank questions
-        
+
         storeAnswer(questionData.get(currentIndex));
         //call the storeAnswer(Question q) metod to store the user selection of the current question
-        int countBlank=0;
+        int countBlank = 0;
         //count the number for blanks
-        for(int i=0;i<questionData.size();i++){
+        for (int i = 0; i < questionData.size(); i++) {
             //look through the ArrayList questionData
-            
+
             //check if the question is left blank
-            if(questionData.get(i).getCurrentSelection()<0){
+            if (questionData.get(i).getCurrentSelection() < 0) {
                 //if the question is left blank
-                
+
                 countBlank++;
                 //the number of blanks + 1
-                unfinishedQuestion+=(i+1)+", ";
+                unfinishedQuestion += (i + 1) + ", ";
                 //store the index
             }
         }
         String confirmQuestion;
         //the text of the confirm question
-        
+
         //check the number of blank questions
-        if(countBlank==0){
+        if (countBlank == 0) {
             //if there are no blank question
-            confirmQuestion=" Are you sure about submitting the quiz?";
-        }
-        else if(countBlank==1){
+            confirmQuestion = " Are you sure about submitting the quiz?";
+        } else if (countBlank == 1) {
             //if there is one blank question
-            confirmQuestion="Question "+unfinishedQuestion.substring(0, unfinishedQuestion.length()-2)
-                        +" is left blank, do you still want to submit?";
-        }
-        else{
+            confirmQuestion = "Question " + unfinishedQuestion.substring(0, unfinishedQuestion.length() - 2)
+                    + " is left blank, do you still want to submit?";
+        } else {
             //if there is more than 2 blank questions
-            confirmQuestion="Question "+unfinishedQuestion.substring(0, unfinishedQuestion.length()-2)
-                        +" are left blank, do you still want to submit?";
+            confirmQuestion = "Question " + unfinishedQuestion.substring(0, unfinishedQuestion.length() - 2)
+                    + " are left blank, do you still want to submit?";
         }
-        
-        Object[] options = {"Submit","Cancel"};
+
+        Object[] options = {"Submit", "Cancel"};
         //the option buttons for the confirm message will be "Submit", and "Cancel"
-        int comfirm=JOptionPane.showOptionDialog(null, 
-                confirmQuestion, 
-                "Do you want to submit?", 
+        int comfirm = JOptionPane.showOptionDialog(null,
+                confirmQuestion,
+                "Do you want to submit?",
                 JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE,null,options,options[0]);
+                JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         //present the confirm message
-        
-        if(comfirm==JOptionPane.YES_OPTION){
+
+        if (comfirm == JOptionPane.YES_OPTION) {
             //if the user choose "Yes"
-            
-            QuizSummarize summarize=new QuizSummarize(mainMenu,questionData);
+
+            QuizSummarize summarize = new QuizSummarize(mainMenu, questionData);
             //create a new QuizSummarize JFrame Window with attributes of mainMenu and questionData
             dispose();
             //dispose this quiz menu window
@@ -849,7 +839,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
         }
         //do nothing if the user choose "Cancel"
     }//GEN-LAST:event_submitAnswerButtonActionPerformed
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JPanel buttonPanel;
     javax.swing.JScrollPane jScrollPane1;
@@ -872,65 +862,59 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
-    
+
     /**
      * Keypressed action
+     *
      * @param e = Key event
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             //if RIGHT ARROW is pressed
-            
+
             nextQuestionButton.doClick();
             //call the action for clicking nextQuestionButton
-        }
-        else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             //if LEFT ARROW is pressed
-            
+
             lastQuestionButton.doClick();
             //call the action for clicking lastQuestionButton
-        }
-        else if(e.getKeyChar()=='1'||e.getKeyChar()=='a'||e.getKeyChar()=='A'){
+        } else if (e.getKeyChar() == '1' || e.getKeyChar() == 'a' || e.getKeyChar() == 'A') {
             //if key 1, a, or A is pressed
-            
+
             selectionARadioButton.doClick();
             //call the action for clicking selectionARadioButton
-        }
-        else if(e.getKeyChar()=='2'||e.getKeyChar()=='b'||e.getKeyChar()=='B'){
+        } else if (e.getKeyChar() == '2' || e.getKeyChar() == 'b' || e.getKeyChar() == 'B') {
             //if key 2, b, or B is pressed
-            
+
             selectionBRadioButton.doClick();
             //call the action for clicking selectionBRadioButton
-        }
-        else if(e.getKeyChar()=='3'||e.getKeyChar()=='c'||e.getKeyChar()=='C'){
+        } else if (e.getKeyChar() == '3' || e.getKeyChar() == 'c' || e.getKeyChar() == 'C') {
             //if key 3, c, or C is pressed
-            
+
             selectionCRadioButton.doClick();
             //call the action for clicking selectionCRadioButton
-        }
-        else if(e.getKeyChar()=='4'||e.getKeyChar()=='d'||e.getKeyChar()=='D'){
+        } else if (e.getKeyChar() == '4' || e.getKeyChar() == 'd' || e.getKeyChar() == 'D') {
             //if key 4, d, or D is pressed
-            
+
             selectionDRadioButton.doClick();
             //call the action for clicking selectionDRadioButton
-        }
-        else if(e.getKeyChar()=='5'||e.getKeyChar()=='e'||e.getKeyChar()=='E'){
+        } else if (e.getKeyChar() == '5' || e.getKeyChar() == 'e' || e.getKeyChar() == 'E') {
             //if key 5, e, or E is pressed
-            
-            if(questionData.get(currentIndex).getSelections().length>4){
+
+            if (questionData.get(currentIndex).getSelections().length > 4) {
                 //if the current question has more than 4 questions
-                
+
                 selectionERadioButton.doClick();
                 //call the action for clicking selectionERadioButton
             }
-        }
-        else if(e.getKeyCode() == KeyEvent.VK_ENTER){
+        } else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             //if Enter is pressed
-            
+
             submitAnswerButton.doClick();
             //call the action for clicking submitAnswerButton
         }
@@ -938,11 +922,14 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+
     }
-    
+
     @Override
     public void setFocusable(boolean b) {
+
         super.setFocusable(b);
+
     }
+
 }

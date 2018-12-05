@@ -46,7 +46,7 @@
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="selectionRadioButtonPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="buttonPanel" min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="buttonPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -94,7 +94,7 @@
                 <Property name="text" type="java.lang.String" value="1."/>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="&#x6587;&#x672c;&#x5149;&#x6807;"/>
+                  <Color id="Default Cursor"/>
                 </Property>
                 <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -148,7 +148,7 @@
             <Property name="text" type="java.lang.String" value="jRadioButton1"/>
             <Property name="actionCommand" type="java.lang.String" value="jRadioBu &#xa;tton1"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="&#x624b;&#x578b;&#x5149;&#x6807;"/>
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -162,7 +162,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="jRadioButton2"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="&#x624b;&#x578b;&#x5149;&#x6807;"/>
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -176,7 +176,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="jRadioButton3"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="&#x624b;&#x578b;&#x5149;&#x6807;"/>
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -190,7 +190,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="jRadioButton4"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="&#x624b;&#x578b;&#x5149;&#x6807;"/>
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
           <Events>
@@ -204,7 +204,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="jRadioButton5"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="&#x624b;&#x578b;&#x5149;&#x6807;"/>
+              <Color id="Default Cursor"/>
             </Property>
           </Properties>
           <Events>
