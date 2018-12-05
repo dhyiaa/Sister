@@ -354,6 +354,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         saveAnswerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quiz Menu");
         setResizable(false);
 
         questionContentTextArea.setEditable(false);
@@ -363,7 +364,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         questionContentTextArea.setRows(5);
         questionContentTextArea.setText("1.");
         questionContentTextArea.setWrapStyleWord(true);
-        questionContentTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        questionContentTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         questionContentTextArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(questionContentTextArea);
 
@@ -386,7 +387,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         selections.add(selectionARadioButton);
         selectionARadioButton.setText("jRadioButton1");
         selectionARadioButton.setActionCommand("jRadioBu \ntton1");
-        selectionARadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        selectionARadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionARadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectionARadioButtonActionPerformed(evt);
@@ -395,7 +396,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
 
         selections.add(selectionBRadioButton);
         selectionBRadioButton.setText("jRadioButton2");
-        selectionBRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        selectionBRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionBRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectionBRadioButtonActionPerformed(evt);
@@ -404,7 +405,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
 
         selections.add(selectionCRadioButton);
         selectionCRadioButton.setText("jRadioButton3");
-        selectionCRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        selectionCRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionCRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectionCRadioButtonActionPerformed(evt);
@@ -413,7 +414,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
 
         selections.add(selectionDRadioButton);
         selectionDRadioButton.setText("jRadioButton4");
-        selectionDRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        selectionDRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionDRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectionDRadioButtonActionPerformed(evt);
@@ -422,7 +423,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
 
         selections.add(selectionERadioButton);
         selectionERadioButton.setText("jRadioButton5");
-        selectionERadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        selectionERadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionERadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectionERadioButtonActionPerformed(evt);
@@ -549,7 +550,7 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
                 .addGap(0, 0, 0)
                 .addComponent(selectionRadioButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
