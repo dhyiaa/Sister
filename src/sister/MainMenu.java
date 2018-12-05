@@ -109,7 +109,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         topicTitleLabel.setFont(new java.awt.Font("Lucida Bright", 0, 13)); // NOI18N
         topicTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        topicTitleLabel.setText("----");
+        topicTitleLabel.setText("-Select to View Notes-");
 
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
