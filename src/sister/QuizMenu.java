@@ -362,7 +362,6 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         questionContentTextArea.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         questionContentTextArea.setLineWrap(true);
         questionContentTextArea.setRows(5);
-        questionContentTextArea.setText("1.");
         questionContentTextArea.setWrapStyleWord(true);
         questionContentTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         questionContentTextArea.setDisabledTextColor(new java.awt.Color(0, 0, 0));
