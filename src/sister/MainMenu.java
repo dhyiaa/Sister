@@ -14,10 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- *
- * @author dhiaa
- */
 public class MainMenu extends javax.swing.JFrame {
 
     public QuizMenu newQuiz;
