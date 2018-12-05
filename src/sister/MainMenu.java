@@ -100,6 +100,7 @@ public class MainMenu extends javax.swing.JFrame {
         topicListNameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Software Development Life Cycle Project");
         setResizable(false);
 
         titleLabel.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
@@ -137,7 +138,7 @@ public class MainMenu extends javax.swing.JFrame {
         noteContentTextArea.setLineWrap(true);
         noteContentTextArea.setRows(5);
         noteContentTextArea.setWrapStyleWord(true);
-        noteContentTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        noteContentTextArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         textareaScrollPane.setViewportView(noteContentTextArea);
 
         javax.swing.GroupLayout textareaPanelLayout = new javax.swing.GroupLayout(textareaPanel);
@@ -171,7 +172,7 @@ public class MainMenu extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        topicList.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        topicList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         topicList.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 topicListMouseMoved(evt);
