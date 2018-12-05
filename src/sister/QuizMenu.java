@@ -13,10 +13,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
-/**
- *
- * @author zhuxiaoyu
- */
 public class QuizMenu extends javax.swing.JFrame implements KeyListener {
 
     private MainMenu mainMenu;
