@@ -385,8 +385,6 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         );
 
         selections.add(selectionARadioButton);
-        selectionARadioButton.setText("jRadioButton1");
-        selectionARadioButton.setActionCommand("jRadioBu \ntton1");
         selectionARadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionARadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +393,6 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         });
 
         selections.add(selectionBRadioButton);
-        selectionBRadioButton.setText("jRadioButton2");
         selectionBRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionBRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -404,7 +401,6 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         });
 
         selections.add(selectionCRadioButton);
-        selectionCRadioButton.setText("jRadioButton3");
         selectionCRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionCRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +409,6 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         });
 
         selections.add(selectionDRadioButton);
-        selectionDRadioButton.setText("jRadioButton4");
         selectionDRadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionDRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,7 +417,6 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
         });
 
         selections.add(selectionERadioButton);
-        selectionERadioButton.setText("jRadioButton5");
         selectionERadioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectionERadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
