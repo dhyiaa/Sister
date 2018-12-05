@@ -5,7 +5,7 @@
  * December 4, 2018
  * ISC4U Unit 6, Project Management Project
  */
-package sister;
+package sdlcproject;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -161,6 +161,7 @@ public class QuizSummarize extends javax.swing.JFrame {
         summarizeEditorPane = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quiz Result");
         setResizable(false);
 
         titleLabel.setFont(new java.awt.Font("Lucida Bright", 0, 24)); // NOI18N
@@ -173,7 +174,6 @@ public class QuizSummarize extends javax.swing.JFrame {
         summarizeEditorPane.setEditable(false);
         summarizeEditorPane.setContentType("text/html"); // NOI18N
         summarizeEditorPane.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        summarizeEditorPane.setSize(new java.awt.Dimension(560, 16));
         summarizeScrollPane.setViewportView(summarizeEditorPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
