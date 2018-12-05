@@ -16,7 +16,7 @@ public class QuizSummarize extends javax.swing.JFrame {
     //the main menu
     private ArrayList<Question> questionData = new ArrayList();
     //an ArrayList of Questions
-    private static String summarize = "";
+    private static String summarize;
     //the output summarize String
 
     /**
@@ -32,6 +32,8 @@ public class QuizSummarize extends javax.swing.JFrame {
             }
 
         });
+        summarize = "";
+        //initiate the output summarize String
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         //this window will not exit directly on close
         this.setTitle("Quiz Result"); // set the title of window

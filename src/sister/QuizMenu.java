@@ -824,6 +824,8 @@ public class QuizMenu extends javax.swing.JFrame implements KeyListener {
             //create a new QuizSummarize JFrame Window with attributes of mainMenu and questionData
             dispose();
             //dispose this quiz menu window
+            mainMenu.storeUnfinishQuiz(null);
+            //clear the quiz menu stored in th main menu
             summarize.setVisible(true);
             //popup the quiz summarize Window
         }
