@@ -129,8 +129,8 @@ public class QuizSummarize extends javax.swing.JFrame {
         //the option buttons for the confirm message will be "Yes", and "Cancel"
 
         int comfirm = JOptionPane.showOptionDialog(null,
-                "Confirm?",
-                "Do you want to submit?",
+                "Do you want to exit?",
+                "Confirm",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         //present the confirm message
