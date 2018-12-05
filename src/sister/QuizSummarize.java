@@ -38,6 +38,7 @@ public class QuizSummarize extends javax.swing.JFrame {
         });
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         //this window will not exit directly on close
+        this.setTitle("Quiz Result"); // set the title of window
     }
 
     /**
