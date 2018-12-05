@@ -114,6 +114,8 @@ public class QuizSummarize extends javax.swing.JFrame {
         //set the scoreLabel's text to the form of (user's score/full score)
         summarizeEditorPane.setText(summarize);
         //output the quiz summarize
+        summarizeEditorPane.setCaretPosition(0);
+        //set the viewing point of the summarizeEditorPane to the top
     }
 
     /**
